@@ -1,6 +1,7 @@
 {
 	"testsBaseUrl": "tests",
 	"tests": [
-		"base"
+		"base",
+		"operators.range"
 	]
 }

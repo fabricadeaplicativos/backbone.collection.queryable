@@ -10,7 +10,9 @@ require.config({
 		"requirejs-text": "bower_components/requirejs-text/text",
 		underscore: "bower_components/underscore/underscore",
 		"underscore.deep": "bower_components/underscore.deep/underscore.deep",
-		"underscore.containers": "bower_components/underscore.containers/underscore.containers"
+		"underscore.containers": "bower_components/underscore.containers/underscore.containers",
+		"backbone.collection.lazy": "bower_components/backbone.collection.lazy/backbone.collection.lazy",
+		lazy: "bower_components/lazy.js/lazy"
 	},
 	shim: {
 		backbone: {
@@ -22,7 +24,10 @@ require.config({
 		},
 		underscore: {
 			exports: "_"
-		}
+		},
+        lazy: {
+            exports: "Lazy"
+        }
 	}
 });
 

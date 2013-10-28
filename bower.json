@@ -5,7 +5,8 @@
   "dependencies": {
     "backbone": "~1.1.0",
     "underscore.deep": "simonfan/underscore.deep",
-    "underscore.containers": "simonfan/underscore.containers"
+    "underscore.containers": "simonfan/underscore.containers",
+    "backbone.collection.lazy": "simonfan/backbone.collection.lazy"
   },
   "devDependencies": {
     "requirejs": "*",

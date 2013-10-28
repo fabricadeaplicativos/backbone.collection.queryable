@@ -4,10 +4,10 @@ that implements the same powerful querying API of mongoDB
 
 @module backbone.collection.queryable
 */
-define(["backbone","underscore","underscore.deep","underscore.containers"],
-function(Backbone , undef      , undef           , undef                 ) {
+define(["backbone.collection.lazy","underscore","underscore.deep","underscore.containers"],
+function(LazyCollection           , undef      , undef           , undef                 ) {
 
-    var Queryable = Backbone.Collection.extend({
+    var Queryable = LazyCollection.extend({
         initialize: function(models, options) {
 
         },
@@ -23,8 +23,8 @@ function(Backbone , undef      , undef           , undef                 ) {
         query: function(criteria, options) {
             var _this = this,
                 options = options || {},
-                initial = options.initial,
-                pageLength = options.pageLength,
+                skip = options.skip || 0,
+                limit = options.limit;
 
                 // filter models using the _evaluateModel method.
                 filtered = this.filter(function(model) {
@@ -51,7 +51,9 @@ function(Backbone , undef      , undef           , undef                 ) {
         @method query
         @param [criteria] {Object|String|Number|Array}
         @param [options] {Object}
-            @param [skip]
+            @param [skip] {Number}
+            @param [limit] {Number}
+
         */
 
         operators: {
