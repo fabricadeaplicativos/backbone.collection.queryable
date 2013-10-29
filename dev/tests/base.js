@@ -1,22 +1,28 @@
-define(['backbone.collection.queryable'], function(Queryable) {
+define(['backbone.collection.queryable','dataset'], function(Queryable, dataset) {
 
 return function() {
 
     module('Base');
 
-    test('Initialization', function() {
-        var fruits = [
-            { id: 1, name: 'Banana', color: ['yellow','green'], flavor: ['sweet'] },
-            { id: 2, name: 'Apple', color: ['green','yellow','red'], flavor: ['sweet','citric'] },
-            { id: 3, name: 'Watermelon', color: ['green'], flavor: ['sweet'] },
-            { id: 4, name: 'Melon', color: ['yellow'], flavor: ['sweet'] },
-            { id: 5, name: 'Lemon', color: ['yellow','green'], flavor: ['citric'] }
-        ];
+    test('Initialization', function() {;
 
-        var collection = new Queryable(fruits);
+        var collection = new Queryable(dataset.fruits);
 
         ok(collection);
     });
 
+    test('queryOne(criteria, options)', function() {
+        var fruits = new Queryable(dataset.fruits);
+
+        equal(fruits.queryOne({ name: 'Apple' }).get('name'), 'Apple');
+    });
+
+    test('query(criteria, options), simple criteria', function() {
+        var fruits = new Queryable(dataset.fruits),
+            yellow = fruits.query({ color: 'yellow' }).toArray(),
+            yellowIds = _.map(yellow, function(fr) { return fr.get('id') });
+
+        deepEqual(yellowIds, [1,2,4,5]);
+    })
 }
 });

@@ -9,7 +9,8 @@ function(LazyCollection           , undef      , undef           , undef        
 
     var Queryable = LazyCollection.extend({
         initialize: function(models, options) {
-
+            // bind methods
+            _.bindAll(this,'query','_evaluateModel','_evaluateValue');
         },
         /**
 
@@ -20,6 +21,12 @@ function(LazyCollection           , undef      , undef           , undef        
         @param {Object} options
         */
 
+        queryOne:function(criteria, options) {
+            var res = this.query(criteria, options).take(1).first();
+
+            return res;
+        },
+
         query: function(criteria, options) {
             var _this = this,
                 options = options || {},
@@ -28,15 +35,13 @@ function(LazyCollection           , undef      , undef           , undef        
 
                 // filter models using the _evaluateModel method.
                 filtered = this.filter(function(model) {
-
                     return _this._evaluateModel(model, criteria);
                 });
 
-            if (!_.isUndefined(initial) && !_.isUndefined(pageLength) ) {
-                return _.chain(filtered)
-                        .rest(initial)
-                        .first(pageLength)
-                        .value();
+            if (!_.isUndefined(skip) && !_.isUndefined(limit) ) {
+                return filtered
+                        .rest(skip)
+                        .take(limit);
             } else {
                 return filtered;
             }
@@ -57,9 +62,18 @@ function(LazyCollection           , undef      , undef           , undef        
         */
 
         operators: {
-            // exact match
+            // match values
             $match: function(expected, value, operators) {
-                return _.isArray(value) ? _.contains(value, expected) : value === expected;
+
+                if (_.isArray(value)) {
+                    return _.any(value, function(v) {
+                        return _.isRegExp(expected) ? expected.test(v) : expected === v;
+                    });
+
+                } else {
+                    return _.isRegExp(expected) ? expected.test(value) : expected === value;
+                }
+
             },
 
             // Range
@@ -79,7 +93,7 @@ function(LazyCollection           , undef      , undef           , undef        
 
             // Set
             $in: function(expected, value, operators) {
-                return _.contains(expected, value);
+                return _.isArray(value) ? _.containsAny(expected, value) : _.contains(expected, value);
             },
             /**
             @method in
@@ -88,14 +102,18 @@ function(LazyCollection           , undef      , undef           , undef        
             @param value {String|Number}
             */
 
-            $all: function(expected, value, operators) {
-                return _.containsAll(expected, value);
-            },
             $nin: function(expected, value, operators) {
-                return !_.containsAny(expected, value);
+                return _.isArray(value) ? !_.containsAny(expected, value) : !_.contains(expected, value);
+            },
+
+            $all: function(expected, value, operators) {
+                return _.containsAll(value, expected);
             },
 
             // Boolean
+            $e: function(expected, value, operators) {
+
+            },
             $ne: function(expected, value, operators) {
                 return !operators.$match(expected, value, operators);
             },
@@ -135,26 +153,20 @@ function(LazyCollection           , undef      , undef           , undef        
         */
 
         _evaluateValue: function(value, criterion) {
+            var _this = this;
+
             /**
              * If the criterion is an object, it demands special behaviour
              */
-            if (_.isObject(criterion)) {
-
-                if (_.isRegExp(criterion)) {
-                    // RegExp matching.
-                    return criterion.test(value);
-
-                } else {
-                    // plain object
-                    return _.every(criterion, function(expected, operator) {
-                        _this.operators[ operator ](expected, value, this.operators);
-                    });
-
-                }
+            if (_.isObject(criterion) && !_.isRegExp(criterion)) {
+                // plain object
+                return _.every(criterion, function(expected, operator) {
+                    return _this.operators[ operator ](expected, value, this.operators);
+                });
 
             } else {
                 // simple comparison
-                return _this.operators.$match(expected, value, operators);
+                return this.operators.$match(criterion, value, this.operators);
             }
         },
         /**
@@ -163,14 +175,6 @@ function(LazyCollection           , undef      , undef           , undef        
         @method
         @private
         */
-
-        limit: function(quantity) {
-
-        },
-
-        skip: function(quantity) {
-
-        }
     });
 
     return Queryable;

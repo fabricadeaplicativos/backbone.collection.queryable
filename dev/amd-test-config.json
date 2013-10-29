@@ -2,6 +2,7 @@
 	"testsBaseUrl": "tests",
 	"tests": [
 		"base",
-		"operators.range"
+		"operators.range",
+		"operators.set"
 	]
 }
