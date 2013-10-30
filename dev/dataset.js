@@ -8,7 +8,7 @@ define([], function() {
             name: 'Banana',
             color: ['yellow'],
             flavor: ['sweet'],
-            price: 30,
+            price: 29,
         },
         {
             id: 2,

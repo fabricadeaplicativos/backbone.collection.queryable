@@ -3,6 +3,7 @@
 	"tests": [
 		"base",
 		"operators.range",
-		"operators.set"
+		"operators.set",
+		"projections"
 	]
 }

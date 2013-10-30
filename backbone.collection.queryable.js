@@ -21,30 +21,22 @@ function(LazyCollection           , undef      , undef           , undef        
         @param {Object} options
         */
 
-        queryOne:function(criteria, options) {
-            var res = this.query(criteria, options).take(1).first();
+        queryOne: function(criteria, projection) {
+            var res = this.query(criteria).take(1).first();
 
             return res;
         },
 
-        query: function(criteria, options) {
+        query: function(criteria, projection) {
             var _this = this,
-                options = options || {},
-                skip = options.skip || 0,
-                limit = options.limit;
-
                 // filter models using the _evaluateModel method.
-                filtered = this.filter(function(model) {
+                lazyModels = this.filter(function(model) {
                     return _this._evaluateModel(model, criteria);
                 });
 
-            if (!_.isUndefined(skip) && !_.isUndefined(limit) ) {
-                return filtered
-                        .rest(skip)
-                        .take(limit);
-            } else {
-                return filtered;
-            }
+            return projection ? lazyModels.map(function(model) {
+                                    return _this._projectModel(model, projection)
+                                }) : lazyModels;
         },
         /**
         Equivalent to MongoDB's .find(criteria, [projection]) method.
@@ -61,6 +53,9 @@ function(LazyCollection           , undef      , undef           , undef        
 
         */
 
+        /**
+         * QUERY OPERATORS
+         */
         operators: {
             // match values
             $match: function(expected, value, operators) {
@@ -175,6 +170,40 @@ function(LazyCollection           , undef      , undef           , undef        
         @method
         @private
         */
+
+
+        /**
+         * PROJECTION OPERATORS
+         */
+
+        _projectModel: function(model, projection) {
+            if (_.isString(projection)) {
+                return model.get(projection);
+
+            } else {
+                var _this = this,
+                    r = {};
+
+                _.each(projection, function(requirement, attributeName) {
+
+                    if (requirement) {
+                            // get the value.
+                        var attribute = model.get(attributeName);
+
+                        if (_.isObject(requirement)) {
+                            // set
+                            r[ attributeName ] = _this._projectAttribute(attribute, requirement);
+                        } else {
+                            r[ attributeName ] = attribute;
+                        }
+
+                    }
+                });
+
+                return r;
+            }
+
+        },
     });
 
     return Queryable;
