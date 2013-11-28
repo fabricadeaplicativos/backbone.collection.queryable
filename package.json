@@ -1,7 +1,7 @@
 {
   "name": "backbone.collection.queryable",
   "main": "./src/backbone.collection.queryable",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "dependencies": {
     "amdefine": ">=0.1.0",
     "backbone.collection.lazy": "0.0.0",
