@@ -1,9 +1,0 @@
-{
-	"testsBaseUrl": "tests",
-	"tests": [
-		"base",
-		"operators.range",
-		"operators.set",
-		"projections"
-	]
-}
