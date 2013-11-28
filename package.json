@@ -1,11 +1,21 @@
 {
-  "name": "package",
+  "name": "backbone.collection.queryable",
+  "main": "./src/backbone.collection.queryable",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "amdefine": ">=0.1.0",
+    "backbone.collection.lazy": "0.0.0",
+    "underscore": "~1.5.2",
+    "document-matcher": "git://github.com/simonfan/document-matcher.git"
+  },
   "devDependencies": {
     "grunt": "*",
     "grunt-contrib-connect": "*",
     "grunt-bower-requirejs": "*",
-    "grunt-contrib-watch": "*"
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-nodeunit": "*",
+    "grunt-contrib-yuidoc": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-requirejs": "*"
   }
 }

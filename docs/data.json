@@ -1,0 +1,125 @@
+{
+    "project": {
+        "name": "backbone.collection.queryable",
+        "version": "0.0.0"
+    },
+    "files": {
+        "src/backbone.collection.queryable.js": {
+            "name": "src/backbone.collection.queryable.js",
+            "modules": {
+                "Backbone.Collection.Queryable": 1
+            },
+            "classes": {
+                "Queryable": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "Backbone.Collection.Queryable": {
+            "name": "Backbone.Collection.Queryable",
+            "submodules": {},
+            "classes": {
+                "Queryable": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/backbone.collection.queryable.js",
+            "line": 22,
+            "description": "AMD and CJS module."
+        }
+    },
+    "classes": {
+        "Queryable": {
+            "name": "Queryable",
+            "shortname": "Queryable",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Backbone.Collection.Queryable",
+            "namespace": "",
+            "file": "src/backbone.collection.queryable.js",
+            "line": 22,
+            "description": "Binds methods to the newly instantiated object",
+            "is_constructor": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "src/backbone.collection.queryable.js",
+            "line": 32,
+            "description": "A much more powerful 'Backbone.Collection.where'\nmethod that leverages the power provided by mongo\nquery operators.",
+            "itemtype": "method",
+            "name": "query",
+            "params": [
+                {
+                    "name": "criteria",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "projection",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Lazyjs object"
+            },
+            "class": "Queryable",
+            "module": "Backbone.Collection.Queryable"
+        },
+        {
+            "file": "src/backbone.collection.queryable.js",
+            "line": 59,
+            "description": "Shorthand for\n`collection.query(criteria).take(1).first();`",
+            "itemtype": "method",
+            "name": "queryOne",
+            "params": [
+                {
+                    "name": "criteria",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "projection",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Model"
+            },
+            "class": "Queryable",
+            "module": "Backbone.Collection.Queryable"
+        },
+        {
+            "file": "src/backbone.collection.queryable.js",
+            "line": 74,
+            "description": "Instead of returning the model object,\nreturn an object with selected attributes.",
+            "itemtype": "method",
+            "name": "_projectModel",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "model",
+                    "description": "",
+                    "type": "Backbone.Model"
+                },
+                {
+                    "name": "projection",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "Queryable",
+            "module": "Backbone.Collection.Queryable"
+        }
+    ],
+    "warnings": []
+}
