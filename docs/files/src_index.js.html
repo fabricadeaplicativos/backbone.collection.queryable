@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src/backbone.collection.queryable.js - backbone.collection.queryable</title>
+    <title>src/index.js - backbone.collection.queryable</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -84,7 +84,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src/backbone.collection.queryable.js</h1>
+                        <h1 class="file-heading">File: src/index.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -102,61 +102,58 @@
 if (typeof define !== &#x27;function&#x27;) { var define = require(&#x27;amdefine&#x27;)(module) }
 /* jshint ignore:end */
 
-define([&#x27;backbone.collection.lazy&#x27;, &#x27;document-matcher&#x27;, &#x27;underscore&#x27;],
-function (LazyCollection          , documentMatcher   , _           ) {
-
+define(function (require, exports, module) {
 	&#x27;use strict&#x27;;
+
+	var LazyCollection = require(&#x27;backbone.collection.lazy&#x27;),
+		objectQuery = require(&#x27;object-query&#x27;),
+		_ = require(&#x27;lodash&#x27;);
 
 
 	var Queryable = LazyCollection.extend({
 		/**
-		 * Binds methods to the newly instantiated object
-		 *
 		 * @class Queryable
 		 * @constructor
+		 * @param models {Array}
 		 */
-		initialize: function initialize(models, options) {
-			_.bindAll(this, &#x27;query&#x27;);
-		},
 
 		/**
 		 * A much more powerful &#x27;Backbone.Collection.where&#x27;
 		 * method that leverages the power provided by mongo
-		 * query operators.
+		 * find operators.
 		 *
-		 * @method query
+		 * @method find
 		 * @param criteria {Object}
 		 * @param projection {Object}
 		 * @return Lazyjs object
 		 */
-		query: function query(criteria, projection) {
-
+		find: function find(criteria, projection) {
 
 			var _this = this,
-				// build the document matcher
-				match = documentMatcher(criteria),
+				// build the objectQuery
+				findFunc = objectQuery(criteria),
 
-				// filter models using the match func.
+				// filter models using the findFunc func.
 				lazyModels = this.filter(function (model) {
-					return match(model.attributes);
+					return findFunc(model.attributes);
 				});
 
 			return projection ? lazyModels.map(function (model) {
-									return _this._projectModel(model, projection);
+									return _this.project(model.attributes, projection);
 								}) : lazyModels;
 		},
 
 		/**
 		 * Shorthand for
-		 * &#x60;collection.query(criteria).take(1).first();&#x60;
+		 * &#x60;collection.find(criteria).take(1).first();&#x60;
 		 *
-		 * @method queryOne
+		 * @method findOne
 		 * @param criteria {Object}
 		 * @param projection {Object}
 		 * @return Model
 		 */
-		queryOne: function queryOne(criteria, projection) {
-			var res = this.query(criteria).take(1).first();
+		findOne: function findOne(criteria, projection) {
+			var res = this.find(criteria).take(1).first();
 
 			return res;
 		},
@@ -165,12 +162,46 @@ function (LazyCollection          , documentMatcher   , _           ) {
 		 * Instead of returning the model object,
 		 * return an object with selected attributes.
 		 *
-		 * @method _projectModel
-		 * @private
+		 * @method project
 		 * @param model {Backbone.Model}
 		 * @param projection {Object}
 		 */
-		_projectModel: function _projectModel() {
+		project: function project(object, projection) {
+
+			if (_.isString(projection)) {
+				// projection is a string, just return the value
+				// it is a key, just return the corresponding value
+				return object[projection];
+
+			} else if (_.isArray(projection)) {
+				// projection is an array. assume
+				// that only the defined properties are required.
+				var res = {};
+
+				_.each(projection, function (key) {
+					res[key] = object[key];
+				});
+
+				return res;
+
+			} else if (_.isObject(projection)) {
+				// projection is object..
+				// harder...
+				var res = {};
+
+				_.each(projection, _.bind(function (subProjection, key) {
+
+					if (subProjection === true) {
+						res[key] = object[key];
+					} else {
+						// go recursive.
+						res[key] = this.project(object[key], subProjection);
+					}
+
+				}, this));
+
+				return res;
+			}
 
 		},
 

@@ -1,11 +1,12 @@
 {
   "name": "backbone.collection.queryable",
-  "main": "src/backbone.collection.queryable.js",
-  "version": "0.1.0",
+  "main": "built/backbone.collection.queryable.js",
+  "version": "0.2.1",
+  "description": "Queryable Backbone collection.",
   "dependencies": {
-    "backbone.collection.lazy": "*",
-    "underscore": "~1.5.2",
-    "document-matcher": "~0.1.0"
+    "lodash": "~2.4.1",
+    "object-query": "*",
+    "backbone.collection.lazy": "*"
   },
   "devDependencies": {
     "requirejs": "*",

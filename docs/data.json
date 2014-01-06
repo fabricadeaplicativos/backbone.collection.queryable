@@ -4,8 +4,8 @@
         "version": "0.0.0"
     },
     "files": {
-        "src/backbone.collection.queryable.js": {
-            "name": "src/backbone.collection.queryable.js",
+        "src/index.js": {
+            "name": "src/index.js",
             "modules": {
                 "Backbone.Collection.Queryable": 1
             },
@@ -26,8 +26,8 @@
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "src/backbone.collection.queryable.js",
-            "line": 22,
+            "file": "src/index.js",
+            "line": 24,
             "description": "AMD and CJS module."
         }
     },
@@ -42,19 +42,25 @@
             "extension_for": [],
             "module": "Backbone.Collection.Queryable",
             "namespace": "",
-            "file": "src/backbone.collection.queryable.js",
-            "line": 22,
-            "description": "Binds methods to the newly instantiated object",
-            "is_constructor": 1
+            "file": "src/index.js",
+            "line": 24,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "models",
+                    "description": "",
+                    "type": "Array"
+                }
+            ]
         }
     },
     "classitems": [
         {
-            "file": "src/backbone.collection.queryable.js",
-            "line": 32,
-            "description": "A much more powerful 'Backbone.Collection.where'\nmethod that leverages the power provided by mongo\nquery operators.",
+            "file": "src/index.js",
+            "line": 30,
+            "description": "A much more powerful 'Backbone.Collection.where'\nmethod that leverages the power provided by mongo\nfind operators.",
             "itemtype": "method",
-            "name": "query",
+            "name": "find",
             "params": [
                 {
                     "name": "criteria",
@@ -74,11 +80,11 @@
             "module": "Backbone.Collection.Queryable"
         },
         {
-            "file": "src/backbone.collection.queryable.js",
-            "line": 59,
-            "description": "Shorthand for\n`collection.query(criteria).take(1).first();`",
+            "file": "src/index.js",
+            "line": 56,
+            "description": "Shorthand for\n`collection.find(criteria).take(1).first();`",
             "itemtype": "method",
-            "name": "queryOne",
+            "name": "findOne",
             "params": [
                 {
                     "name": "criteria",
@@ -98,13 +104,11 @@
             "module": "Backbone.Collection.Queryable"
         },
         {
-            "file": "src/backbone.collection.queryable.js",
-            "line": 74,
+            "file": "src/index.js",
+            "line": 71,
             "description": "Instead of returning the model object,\nreturn an object with selected attributes.",
             "itemtype": "method",
-            "name": "_projectModel",
-            "access": "private",
-            "tagname": "",
+            "name": "project",
             "params": [
                 {
                     "name": "model",

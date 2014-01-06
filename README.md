@@ -1,1 +1,3 @@
-This is a component boilerplate. Add your description here!
+# backbone.collection.queryable
+
+Queryable Backbone collection.

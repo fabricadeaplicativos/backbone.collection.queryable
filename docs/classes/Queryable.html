@@ -92,7 +92,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/src_backbone.collection.queryable.js.html#l22"><code>src&#x2F;backbone.collection.queryable.js:22</code></a>
+            Defined in: <a href="../files/src_index.js.html#l24"><code>src&#x2F;index.js:24</code></a>
         </div>
     
 
@@ -108,8 +108,7 @@
 
 
 <div class="box intro">
-    <p>Binds methods to the newly instantiated object</p>
-
+    
 </div>
 
 
@@ -119,7 +118,17 @@
     <h3 class="name"><code>Queryable</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>models</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -147,7 +156,7 @@
             
         
         
-        <a href="../files/src_backbone.collection.queryable.js.html#l22"><code>src&#x2F;backbone.collection.queryable.js:22</code></a>
+        <a href="../files/src_index.js.html#l24"><code>src&#x2F;index.js:24</code></a>
         
         </p>
 
@@ -161,6 +170,29 @@
         
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">models</code>
+                        <span class="type">Array</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -193,22 +225,22 @@
 
                     <ul class="index-list methods">
                         
-                            <li class="index-item method private">
-                                <a href="#method__projectModel">_projectModel</a>
+                            <li class="index-item method">
+                                <a href="#method_find">find</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_query">query</a>
+                                <a href="#method_findOne">findOne</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_queryOne">queryOne</a>
+                                <a href="#method_project">project</a>
 
                                 
                                 
@@ -230,120 +262,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method__projectModel" class="method item private">
-    <h3 class="name"><code>_projectModel</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>model</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>projection</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/src_backbone.collection.queryable.js.html#l74"><code>src&#x2F;backbone.collection.queryable.js:74</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Instead of returning the model object,
-return an object with selected attributes.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">model</code>
-                        <span class="type">Backbone.Model</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">projection</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_query" class="method item">
-    <h3 class="name"><code>query</code></h3>
+                    <div id="method_find" class="method item">
+    <h3 class="name"><code>find</code></h3>
 
     
         <div class="args">
@@ -394,7 +314,7 @@ return an object with selected attributes.</p>
             
         
         
-        <a href="../files/src_backbone.collection.queryable.js.html#l32"><code>src&#x2F;backbone.collection.queryable.js:32</code></a>
+        <a href="../files/src_index.js.html#l30"><code>src&#x2F;index.js:30</code></a>
         
         </p>
 
@@ -407,7 +327,7 @@ return an object with selected attributes.</p>
     <div class="description">
         <p>A much more powerful &#39;Backbone.Collection.where&#39;
 method that leverages the power provided by mongo
-query operators.</p>
+find operators.</p>
 
     </div>
 
@@ -469,8 +389,8 @@ query operators.</p>
 </div>
 
                 
-                    <div id="method_queryOne" class="method item">
-    <h3 class="name"><code>queryOne</code></h3>
+                    <div id="method_findOne" class="method item">
+    <h3 class="name"><code>findOne</code></h3>
 
     
         <div class="args">
@@ -521,7 +441,7 @@ query operators.</p>
             
         
         
-        <a href="../files/src_backbone.collection.queryable.js.html#l59"><code>src&#x2F;backbone.collection.queryable.js:59</code></a>
+        <a href="../files/src_index.js.html#l56"><code>src&#x2F;index.js:56</code></a>
         
         </p>
 
@@ -533,7 +453,7 @@ query operators.</p>
 
     <div class="description">
         <p>Shorthand for
-<code>collection.query(criteria).take(1).first();</code></p>
+<code>collection.find(criteria).take(1).first();</code></p>
 
     </div>
 
@@ -589,6 +509,116 @@ query operators.</p>
                 
             </div>
         </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_project" class="method item">
+    <h3 class="name"><code>project</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>model</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>projection</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_index.js.html#l71"><code>src&#x2F;index.js:71</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Instead of returning the model object,
+return an object with selected attributes.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">model</code>
+                        <span class="type">Backbone.Model</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">projection</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
     
 
     

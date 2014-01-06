@@ -1,21 +1,25 @@
 require.config({
-	urlArgs: 'bust=0.13601986528374255',
-	baseUrl: '/',
+	urlArgs: 'bust=0.012264262419193983',
+	baseUrl: '/src',
 	paths: {
-		requirejs: 'bower_components/requirejs/require',
-		text: 'bower_components/requirejs-text/text',
-		'backbone.collection.queryable': 'src/backbone.collection.queryable',
-		backbone: 'bower_components/backbone/backbone',
-		'backbone.collection.lazy': 'bower_components/backbone.collection.lazy/src/backbone.collection.lazy',
-		jquery: 'bower_components/jquery/jquery',
-		'requirejs-text': 'bower_components/requirejs-text/text',
-		underscore: 'bower_components/underscore/underscore',
-		lazy: 'bower_components/lazy.js/lazy',
-		'mongo-query-operators': 'bower_components/mongo-query-operators/src/mongo-query-operators',
-		'underscore.contains': 'bower_components/underscore.contains/src/underscore.contains',
-		'underscore.deep': 'bower_components/underscore.deep/src/underscore.deep',
-		'document-matcher': 'bower_components/document-matcher/src/document-matcher',
-		dataset: 'test/qunit/dataset'
+		requirejs: '../bower_components/requirejs/require',
+		text: '../bower_components/requirejs-text/text',
+		mocha: '../node_modules/mocha/mocha',
+		should: '../node_modules/should/should',
+		'backbone.collection.queryable': 'index',
+		'backbone.collection.lazy': '../bower_components/backbone.collection.lazy/built/backbone.collection.lazy',
+		backbone: '../bower_components/backbone/backbone',
+		containers: '../bower_components/containers/built/containers',
+		deep: '../bower_components/deep/built/deep',
+		itr: '../bower_components/itr/built/itr',
+		jquery: '../bower_components/jquery/jquery',
+		lodash: '../bower_components/lodash/dist/lodash.compat',
+		'object-query': '../bower_components/object-query/built/object-query',
+		qunit: '../bower_components/qunit/qunit/qunit',
+		'requirejs-text': '../bower_components/requirejs-text/text',
+		subject: '../bower_components/subject/built/subject',
+		underscore: '../bower_components/underscore/underscore',
+		lazy: '../bower_components/lazy.js/lazy'
 	},
 	shim: {
 		backbone: {
@@ -25,11 +29,17 @@ require.config({
 				'underscore'
 			]
 		},
+		lazy: {
+			exports: 'Lazy'
+		},
 		underscore: {
 			exports: '_'
 		},
-		lazy: {
-			exports: 'Lazy'
+		mocha: {
+			exports: 'mocha'
+		},
+		should: {
+			exports: 'should'
 		}
 	}
 });
