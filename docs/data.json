@@ -7,7 +7,7 @@
         "src/index.js": {
             "name": "src/index.js",
             "modules": {
-                "Backbone.Collection.Queryable": 1
+                "backbone.collection.queryable": 1
             },
             "classes": {
                 "Queryable": 1
@@ -17,8 +17,8 @@
         }
     },
     "modules": {
-        "Backbone.Collection.Queryable": {
-            "name": "Backbone.Collection.Queryable",
+        "backbone.collection.queryable": {
+            "name": "backbone.collection.queryable",
             "submodules": {},
             "classes": {
                 "Queryable": 1
@@ -40,7 +40,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Backbone.Collection.Queryable",
+            "module": "backbone.collection.queryable",
             "namespace": "",
             "file": "src/index.js",
             "line": 24,
@@ -77,7 +77,7 @@
                 "description": "Lazyjs object"
             },
             "class": "Queryable",
-            "module": "Backbone.Collection.Queryable"
+            "module": "backbone.collection.queryable"
         },
         {
             "file": "src/index.js",
@@ -101,7 +101,7 @@
                 "description": "Model"
             },
             "class": "Queryable",
-            "module": "Backbone.Collection.Queryable"
+            "module": "backbone.collection.queryable"
         },
         {
             "file": "src/index.js",
@@ -122,7 +122,7 @@
                 }
             ],
             "class": "Queryable",
-            "module": "Backbone.Collection.Queryable"
+            "module": "backbone.collection.queryable"
         }
     ],
     "warnings": []

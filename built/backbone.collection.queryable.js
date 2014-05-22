@@ -1,5 +1,5 @@
-//     Backbone.Collection.Queryable
+//     backbone.collection.queryable
 //     (c) simonfan
-//     Backbone.Collection.Queryable is licensed under the MIT terms.
+//     backbone.collection.queryable is licensed under the MIT terms.
 
 define("backbone.collection.queryable",["require","exports","module","backbone.collection.lazy","object-query","lodash"],function(t){var e=t("backbone.collection.lazy"),n=t("object-query"),r=t("lodash"),i=e.extend({find:function(t,e){var r=this,i=n(t),o=this.filter(function(t){return i(t.attributes)});return e?o.map(function(t){return r.project(t.attributes,e)}):o},findOne:function(t){var e=this.find(t).take(1).first();return e},project:function(t,e){if(r.isString(e))return t[e];if(r.isArray(e)){var n={};return r.each(e,function(e){n[e]=t[e]}),n}if(r.isObject(e)){var n={};return r.each(e,r.bind(function(e,r){n[r]=e===!0?t[r]:this.project(t[r],e)},this)),n}}});return i});

@@ -4,12 +4,12 @@ YUI.add("yuidoc-meta", function(Y) {
         "Queryable"
     ],
     "modules": [
-        "Backbone.Collection.Queryable"
+        "backbone.collection.queryable"
     ],
     "allModules": [
         {
-            "displayName": "Backbone.Collection.Queryable",
-            "name": "Backbone.Collection.Queryable",
+            "displayName": "backbone.collection.queryable",
+            "name": "backbone.collection.queryable",
             "description": "AMD and CJS module."
         }
     ]

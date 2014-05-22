@@ -125,6 +125,37 @@ module.exports = function (grunt) {
 						exclude: true,
 					},
 				}
+			},
+
+			dev: {
+				options: {
+					// base url where to look for module files
+					// and relative to which the module paths will be defined
+					// (must coincide with that defined in mainConfigFile)
+					baseUrl: './src',
+					// module name
+					name: 'backbone.collection.queryable',
+					// output here
+					out: 'built/backbone.collection.queryable.dev.js',
+					// config file
+					mainConfigFile: 'amdconfig.js',
+
+					// include these modules
+					include: [],
+
+					// exclude these modules AND their dependencies
+					// (excluding your bower dependencies)
+					exclude: ["lodash", "object-query", "backbone.collection.lazy"],
+
+					// excludeShallow
+					excludeShallow: [],
+
+					optimize: 'none',
+
+					pragmas: {
+						exclude: true,
+					},
+				}
 			}
 		}
 	});

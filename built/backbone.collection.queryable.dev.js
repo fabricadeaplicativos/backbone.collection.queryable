@@ -1,3 +1,4 @@
+
 //     backbone.collection.queryable
 //     (c) simonfan
 //     backbone.collection.queryable is licensed under the MIT terms.
@@ -9,11 +10,11 @@
  */
 
 /* jshint ignore:start */
-if (typeof define !== 'function') { var define = require('amdefine')(module) }
+
 /* jshint ignore:end */
 
-define(function (require, exports, module) {
-	'use strict';
+define('backbone.collection.queryable',['require','exports','module','backbone.collection.lazy','object-query','lodash'],function (require, exports, module) {
+	
 
 	var LazyCollection = require('backbone.collection.lazy'),
 		objectQuery = require('object-query'),
